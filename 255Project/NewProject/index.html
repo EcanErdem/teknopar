@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ctis Firearms</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/slider.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="header">
+		
+		<ul id="navigation">
+			<li class="selected">
+				<a href="index.html">home</a>
+			</li>
+			<li>
+				<a href="about.html">about</a>
+			</li>
+			<li>
+				<a href="gallery.html">gallery</a>
+			</li>
+
+			<li>
+				<a href="game.html">Play FN Operation Heli</a>
+			</li>
+			<li>
+				<a href="blog.html">blog</a>
+			</li>
+			<li>
+				<a href="contact.html">contact</a>
+			</li>
+		</ul>
+	</div>
+	<div id="body">		<div id="featured">
+			<img src="images/1.jpg" alt="">
+			<div>
+				<h2>the finest modern military rifle</h2>
+				<span>FN Herstal’s family of rifles covers the full range of requirements</span>
+				<span>with the very short subcompact version</span>
+				<span> the 5.56mm and 7.62mm NATO calibre assault rifles.</span>
+				<a href="gallery.html" class="more">view gallery</a>
+			</div>
+		</div>
+
+		<div id="slider">
+			<a  class="control_next">></a>
+			<a  class="control_prev"><</a>
+			<a href="gallery.html">
+			<ul>
+			  <li style="background-image: url('images/slider1.png');"></li>
+			  <li style="background-image: url('images/slider2.png');"></li>
+			  <li style="background-image: url('images/slider3.png');"></li>
+			  
+			</ul>  
+		</a>
+		  </div>
+		  <br>
+		  <hr>
+		  <br>
+
+		  <h1><span>let's find your gun!</span></h1>
+		  <form>
+			<h4><label for="birthdaytime">AGE</label></h4>
+			  <input type="date" id="age"  placeholder="age">
+			  <h4><label for="birthdaytime">BUDGET</label></h4>
+			  <input type="number"  id="budget">
+
+			 
+			  <input  name="send" id="send" value="find!">
+		  </form>
+	
+	</div>
+	<div id="footer">
+		<div>
+			<p>&copy; 2022 Ctis Firearms. All rights reserved.</p>
+			
+		</div>
+	</div>
+</body>
+
+<script>
+	jQuery(document).ready(function ($) {
+
+
+$('#send').click(function(){
+
+	var age = $("#age").val();
+	var budget  = $("#budget").val();
+
+	var start = new Date(document.getElementById('age').value);
+    var y = start.getFullYear();
+	
+	var curretYear = new Date().getFullYear();
+
+	var legalAge = (curretYear) - (y); 
+
+	if(age === '' || budget === '') {
+		alert("Please fill age and budget!");
+	}else{
+
+		if(legalAge < 18){
+
+			window.location.replace("https://www.toysrus.com/nerf-elite-2.0-flip-shots-flip-32-blaster-12582989.html");
+
+		}else if((legalAge >= 18)  && (budget < 3000)){
+			window.location.replace("fn-scar-sc.html");
+		}else if((legalAge >= 18)  && (budget > 3000) && (budget <5000)){
+			window.location.replace("fn-scarl-mk2.html");
+		}else if((legalAge >= 18)  && (budget > 5000)){
+			window.location.replace("fn-scarh-mk2.html");
+		}
+		
+		
+	}
+
+		});
+
+$('#checkbox').change(function(){
+  setInterval(function () {
+	  moveRight();
+  }, 3000);
+});
+
+  var slideCount = $('#slider ul li').length;
+  var slideWidth = $('#slider ul li').width();
+  var slideHeight = $('#slider ul li').height();
+  var sliderUlWidth = slideCount * slideWidth;
+  
+  $('#slider').css({ width: slideWidth, height: slideHeight });
+  
+  $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+  
+  $('#slider ul li:last-child').prependTo('#slider ul');
+
+  function moveLeft() {
+	  $('#slider ul').animate({
+		  left: + slideWidth
+	  }, 200, function () {
+		  $('#slider ul li:last-child').prependTo('#slider ul');
+		  $('#slider ul').css('left', '');
+	  });
+  };
+
+  function moveRight() {
+	  $('#slider ul').animate({
+		  left: - slideWidth
+	  }, 200, function () {
+		  $('#slider ul li:first-child').appendTo('#slider ul');
+		  $('#slider ul').css('left', '');
+	  });
+  };
+
+  $('a.control_prev').click(function () {
+	  moveLeft();
+  });
+
+  $('a.control_next').click(function () {
+	  moveRight();
+  });
+
+});    
+
+</script>
+</html>
